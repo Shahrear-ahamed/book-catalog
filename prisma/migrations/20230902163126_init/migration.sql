@@ -1,13 +1,16 @@
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('ADMIN', 'CUSTOMER');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" TEXT NOT NULL,
+    "role" "Role" NOT NULL DEFAULT 'CUSTOMER',
     "contactNo" TEXT NOT NULL,
     "address" TEXT NOT NULL,
-    "profileImg" TEXT NOT NULL,
+    "profileImg" TEXT NOT NULL DEFAULT 'https://res.cloudinary.com/dxkufsejm/image/upload/v1623778856/Bookstore/default-profile-image_kqjz8i.png',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

@@ -1,7 +1,7 @@
 import express from "express";
 import { AuthRoutes } from "../modules/auth/auth.routes";
 
-const routers = express.Router();
+const router = express.Router();
 
 const moduleRoutes = [
   {
@@ -10,6 +10,6 @@ const moduleRoutes = [
   },
 ];
 
-moduleRoutes.forEach((route) => {});
+moduleRoutes.forEach((route) => router.use(route.path, route.route));
 
-export default routers;
+export default router;

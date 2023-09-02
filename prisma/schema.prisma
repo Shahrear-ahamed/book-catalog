@@ -15,10 +15,10 @@ model User {
   name       String
   email      String   @unique
   password   String
-  role       String
+  role       Role     @default(CUSTOMER)
   contactNo  String
   address    String
-  profileImg String
+  profileImg String   @default("")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt()
   reviews    Review[]
@@ -91,4 +91,9 @@ model OrderedBook {
   updatedAt DateTime @updatedAt()
 
   @@map("order_books")
+}
+
+enum Role {
+  ADMIN
+  CUSTOMER
 }

@@ -21,9 +21,12 @@ const signUp = async (payload: User) => {
   const token = await TokenServices.generateToken(userTokenData);
   const refreshToken = await TokenServices.generateRefreshToken(userTokenData);
 
+  const { password, ...others } = result;
+
   return {
     token,
     refreshToken,
+    others,
   };
 };
 
@@ -40,7 +43,7 @@ const signIn = async (payload: Partial<User>) => {
 
   const compared = await BcryptPassword.comparePassword(
     payload.password as string,
-    isExist.password
+    isExist.password,
   );
 
   if (!compared) {
