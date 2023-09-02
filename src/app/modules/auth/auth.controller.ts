@@ -6,19 +6,7 @@ import { AuthService } from "./auth.service";
 // Your controller code here
 
 const signUp = catchAsync(async (req: Request, res: Response) => {
-  const {
-    refreshToken,
-    token,
-    others: result,
-  } = await AuthService.signUp(req.body);
-
-  const cookieOptions = {
-    httpOnly: true,
-    secure: false,
-  };
-
-  res.cookie("refreshToken", refreshToken, cookieOptions);
-  res.cookie("token", token, cookieOptions);
+  const result = await AuthService.signUp(req.body);
 
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
@@ -29,14 +17,7 @@ const signUp = catchAsync(async (req: Request, res: Response) => {
 });
 
 const signIn = catchAsync(async (req: Request, res: Response) => {
-  const { token, ...result } = await AuthService.signIn(req.body);
-
-  const cookieOptions = {
-    httpOnly: true,
-    secure: false,
-  };
-
-  res.cookie("token", token, cookieOptions);
+  const result = await AuthService.signIn(req.body);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

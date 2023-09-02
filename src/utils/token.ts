@@ -1,9 +1,8 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import config from "../config";
 
 interface IToken {
   id: string;
-  email: string;
   role: string;
 }
 
@@ -19,17 +18,12 @@ const generateRefreshToken = async (payload: IToken) => {
   });
 };
 
-const verifyToken = async (token: string) => {
-  return jwt.verify(token, config.jwt.secret as string);
-};
-
-const verifyRefreshToken = async (token: string) => {
-  return jwt.verify(token, config.jwt.refresh_token_secret as string);
+const verifyToken = (token: string, secret: Secret): JwtPayload => {
+  return jwt.verify(token, secret) as JwtPayload;
 };
 
 export const TokenServices = {
   verifyToken,
   generateToken,
-  verifyRefreshToken,
   generateRefreshToken,
 };
