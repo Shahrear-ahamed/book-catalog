@@ -12,6 +12,17 @@ const signUp = async (payload: User) => {
 
   return await prisma.user.create({
     data: payload,
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      contactNo: true,
+      address: true,
+      profileImg: true,
+      createdAt: true,
+      updatedAt: true,
+    },
   });
 };
 

@@ -16,9 +16,9 @@ const sendResponse = <T>(res: Response, data: IApiSendResponse<T>) => {
   const responseData = {
     statusCode: data.statusCode,
     success: data.success,
-    message: data.message || null,
-    meta: data.meta || null,
-    data: data.data || null,
+    message: data.message || undefined,
+    meta: data.meta || undefined,
+    data: data.data || undefined,
   };
   res.status(data.statusCode).json(responseData);
 };
