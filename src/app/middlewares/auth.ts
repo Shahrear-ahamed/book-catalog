@@ -24,8 +24,6 @@ const auth =
         config.jwt.secret as Secret
       );
 
-      console.log(verifiedUser);
-
       if (requiredRoles.length && !requiredRoles.includes(verifiedUser.role)) {
         throw new ApiError(httpStatus.FORBIDDEN, "Forbidden");
       }
