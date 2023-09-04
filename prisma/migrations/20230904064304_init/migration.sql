@@ -10,7 +10,7 @@ CREATE TABLE "users" (
     "role" "Role" NOT NULL DEFAULT 'CUSTOMER',
     "contactNo" TEXT NOT NULL,
     "address" TEXT NOT NULL,
-    "profileImg" TEXT NOT NULL DEFAULT 'https://res.cloudinary.com/dxkufsejm/image/upload/v1623778856/Bookstore/default-profile-image_kqjz8i.png',
+    "profileImg" TEXT NOT NULL DEFAULT '',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -24,7 +24,7 @@ CREATE TABLE "books" (
     "author" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "genre" TEXT NOT NULL,
-    "publicationDate" TIMESTAMP(3) NOT NULL,
+    "publicationDate" TEXT NOT NULL,
     "categoryId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
