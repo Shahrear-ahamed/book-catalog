@@ -24,13 +24,13 @@ const createBook = (payload) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const getAllBooks = (filters, options) => __awaiter(void 0, void 0, void 0, function* () {
     const { page, size, skip } = paginationHelper_1.paginationHelpers.calculatePagination(options);
-    const { searchTerm, maxPrice, minPrice, categoryId } = filters;
+    const { search, maxPrice, minPrice, categoryId } = filters;
     const andCondition = [];
-    if (searchTerm) {
+    if (search) {
         andCondition.push({
             OR: book_constants_1.AllBooksSearchableFields.map((filter) => ({
                 [filter]: {
-                    contains: searchTerm,
+                    contains: search,
                     mode: "insensitive",
                 },
             })),
@@ -81,12 +81,37 @@ const getAllBooks = (filters, options) => __awaiter(void 0, void 0, void 0, func
         data: result,
     };
 });
-const getBookByCategoryId = (categoryId) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma_1.default.book.findMany({
+const getBookByCategoryId = (categoryId, options) => __awaiter(void 0, void 0, void 0, function* () {
+    const { page, size, skip } = paginationHelper_1.paginationHelpers.calculatePagination(options);
+    const booksByCategory = yield prisma_1.default.book.findMany({
+        where: {
+            categoryId,
+        },
+        skip,
+        take: size,
+        orderBy: options.sortBy && options.sortOrder
+            ? {
+                [options.sortBy]: options.sortOrder,
+            }
+            : {
+                createdAt: "desc",
+            },
+    });
+    // total count
+    const total = yield prisma_1.default.book.count({
         where: {
             categoryId,
         },
     });
+    return {
+        meta: {
+            total,
+            page,
+            size,
+            totalPage: Math.ceil(total / size),
+        },
+        data: booksByCategory,
+    };
 });
 const getBookById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return yield prisma_1.default.book.findUnique({

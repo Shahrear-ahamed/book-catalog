@@ -42,7 +42,8 @@ const getAllBooks = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
 }));
 const getBookByCategoryId = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.categoryId;
-    const result = yield book_service_1.BookService.getBookByCategoryId(id);
+    const pagination = (0, pick_1.default)(req.query, ["size", "page", "sortBy", "sortOrder"]);
+    const result = yield book_service_1.BookService.getBookByCategoryId(id, pagination);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
