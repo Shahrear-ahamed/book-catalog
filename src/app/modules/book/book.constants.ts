@@ -1,6 +1,6 @@
 // Define your constants here
 export const BooksFilterableFields = [
-  "searchTerm",
+  "search",
   "title",
   "author",
   "genre",

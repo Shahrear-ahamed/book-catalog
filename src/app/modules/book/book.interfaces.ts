@@ -1,6 +1,6 @@
 // Define your interfaces here
 export type IBooksFilterRequest = {
-  searchTerm?: string;
+  search?: string;
   maxPrice?: number;
   minPrice?: number;
   categoryId?: string;

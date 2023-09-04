@@ -19,8 +19,9 @@
 
 ```
 
+// sign in user
+
 ```
-// signup user
 
 {
     "email": "its.shahrear@gmail.com",

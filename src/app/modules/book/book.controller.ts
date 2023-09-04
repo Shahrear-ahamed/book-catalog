@@ -33,8 +33,9 @@ const getAllBooks = catchAsync(async (req, res) => {
 
 const getBookByCategoryId = catchAsync(async (req, res) => {
   const id = req.params.categoryId;
+  const pagination = pick(req.query, ["size", "page", "sortBy", "sortOrder"]);
 
-  const result = await BookService.getBookByCategoryId(id);
+  const result = await BookService.getBookByCategoryId(id, pagination);
 
   sendResponse(res, {
     success: true,
