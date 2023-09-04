@@ -19,7 +19,7 @@ const getAllBooks = async (
 ) => {
   const { page, size, skip } = paginationHelpers.calculatePagination(options);
 
-  const { searchTerm, ...filterData } = filters;
+  const { searchTerm, maxPrice, minPrice, categoryId } = filters;
 
   const andCondition = [];
 
@@ -34,13 +34,25 @@ const getAllBooks = async (
     });
   }
 
-  if (Object.keys(filterData).length > 0) {
+  if (categoryId) {
     andCondition.push({
-      AND: Object.keys(filterData).map((key) => ({
-        [key]: {
-          equals: (filterData as any)[key],
-        },
-      })),
+      categoryId,
+    });
+  }
+
+  if (maxPrice) {
+    andCondition.push({
+      price: {
+        lte: Number(maxPrice),
+      },
+    });
+  }
+
+  if (minPrice) {
+    andCondition.push({
+      price: {
+        gte: Number(minPrice),
+      },
     });
   }
 

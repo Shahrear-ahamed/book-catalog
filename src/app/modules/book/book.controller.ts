@@ -19,7 +19,7 @@ const createBook = catchAsync(async (req, res) => {
 
 const getAllBooks = catchAsync(async (req, res) => {
   const filters = pick(req.query, BooksFilterableFields);
-  const pagination = pick(req.query, ["limit", "page", "sortBy", "sortOrder"]);
+  const pagination = pick(req.query, ["size", "page", "sortBy", "sortOrder"]);
 
   const result = await BookService.getAllBooks(filters, pagination);
 
