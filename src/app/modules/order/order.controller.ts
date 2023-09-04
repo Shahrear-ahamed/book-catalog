@@ -5,7 +5,8 @@ import { OrderService } from "./order.service";
 // Your controller code here
 
 const createOrder = catchAsync(async (req, res) => {
-  const result = await OrderService.createOrder(req.body);
+  const user = req.user;
+  const result = await OrderService.createOrder(req.body, user?.id);
 
   sendResponse(res, {
     message: "Order created successfully",
