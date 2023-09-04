@@ -70,7 +70,7 @@ model Review {
 
 model Order {
   id           String        @id @default(uuid())
-  status       String
+  status       Status        @default(PENDING)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt()
   userId       String
@@ -96,4 +96,10 @@ model OrderedBook {
 enum Role {
   ADMIN
   CUSTOMER
+}
+
+enum Status {
+  PENDING
+  DELIVERED
+  CANCELLED
 }
