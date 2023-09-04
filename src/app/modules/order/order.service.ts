@@ -61,7 +61,11 @@ const createOrder = async (payload: IOrderPayload, userId: string) => {
 };
 
 const getOrders = async () => {
-  return await prisma.order.findMany();
+  return await prisma.order.findMany({
+    include: {
+      orderedBooks: true,
+    },
+  });
 };
 
 // bonus part
@@ -69,6 +73,9 @@ const getOrderById = async (orderId: string, userId: string) => {
   return await prisma.order.findFirst({
     where: {
       AND: [{ id: orderId }, { userId }],
+    },
+    include: {
+      orderedBooks: true,
     },
   });
 };
