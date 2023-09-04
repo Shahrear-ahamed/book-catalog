@@ -1,4 +1,5 @@
 import httpStatus from "http-status";
+import { JwtPayload } from "jsonwebtoken";
 import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import { OrderService } from "./order.service";
@@ -17,7 +18,8 @@ const createOrder = catchAsync(async (req, res) => {
 });
 
 const getOrders = catchAsync(async (req, res) => {
-  const result = await OrderService.getOrders();
+  const user = req.user;
+  const result = await OrderService.getOrders(user as JwtPayload);
 
   sendResponse(res, {
     message: "Orders fetched successfully",

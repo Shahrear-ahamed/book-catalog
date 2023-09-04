@@ -2,6 +2,7 @@
 
 import { Order } from "@prisma/client";
 import httpStatus from "http-status";
+import { JwtPayload } from "jsonwebtoken";
 import ApiError from "../../../errors/ApiError";
 import prisma from "../../../shared/prisma";
 
@@ -60,8 +61,19 @@ const createOrder = async (payload: IOrderPayload, userId: string) => {
   });
 };
 
-const getOrders = async () => {
+const getOrders = async (user: JwtPayload) => {
+  if (user?.role === "ADMIN") {
+    return await prisma.order.findMany({
+      include: {
+        orderedBooks: true,
+      },
+    });
+  }
+
   return await prisma.order.findMany({
+    where: {
+      userId: user?.id,
+    },
     include: {
       orderedBooks: true,
     },
