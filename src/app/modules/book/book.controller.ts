@@ -1,6 +1,8 @@
 import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
+import pick from "../../../shared/pick";
 import sendResponse from "../../../shared/sendResponse";
+import { BooksFilterableFields } from "./book.constants";
 import { BookService } from "./book.service";
 // Your controller code here
 
@@ -16,7 +18,10 @@ const createBook = catchAsync(async (req, res) => {
 });
 
 const getAllBooks = catchAsync(async (req, res) => {
-  const result = await BookService.getAllBooks();
+  const filters = pick(req.query, BooksFilterableFields);
+  const pagination = pick(req.query, ["limit", "page", "sortBy", "sortOrder"]);
+
+  const result = await BookService.getAllBooks(filters, pagination);
 
   sendResponse(res, {
     success: true,

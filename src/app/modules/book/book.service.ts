@@ -1,7 +1,11 @@
 // Your service code here
 
-import { Book } from "@prisma/client";
+import { Book, Prisma } from "@prisma/client";
+import { IPaginationOptions } from "../../../interfaces/pagination";
 import prisma from "../../../shared/prisma";
+import { paginationHelpers } from "../../../utils/paginationHelper";
+import { AllBooksSearchableFields } from "./book.constants";
+import { IBooksFilterRequest } from "./book.interfaces";
 
 const createBook = async (payload: Book) => {
   return await prisma.book.create({
@@ -9,8 +13,67 @@ const createBook = async (payload: Book) => {
   });
 };
 
-const getAllBooks = async () => {
-  return await prisma.book.findMany();
+const getAllBooks = async (
+  filters: IBooksFilterRequest,
+  options: IPaginationOptions
+) => {
+  const { page, size, skip } = paginationHelpers.calculatePagination(options);
+
+  const { searchTerm, ...filterData } = filters;
+
+  const andCondition = [];
+
+  if (searchTerm) {
+    andCondition.push({
+      OR: AllBooksSearchableFields.map((filter) => ({
+        [filter]: {
+          contains: searchTerm,
+          mode: "insensitive",
+        },
+      })),
+    });
+  }
+
+  if (Object.keys(filterData).length > 0) {
+    andCondition.push({
+      AND: Object.keys(filterData).map((key) => ({
+        [key]: {
+          equals: (filterData as any)[key],
+        },
+      })),
+    });
+  }
+
+  const whereCondition: Prisma.BookWhereInput =
+    andCondition.length > 0 ? { AND: andCondition } : {};
+
+  // get data
+  const result = await prisma.book.findMany({
+    where: whereCondition,
+    skip,
+    take: size,
+    orderBy:
+      options.sortBy && options.sortOrder
+        ? {
+            [options.sortBy]: options.sortOrder,
+          }
+        : {
+            createdAt: "desc",
+          },
+  });
+
+  // total count
+  const total = await prisma.book.count();
+
+  return {
+    meta: {
+      total,
+      page,
+      size,
+      totalPage: Math.ceil(total / size),
+    },
+    data: result,
+  };
 };
 
 const getBookByCategoryId = async (categoryId: string) => {
