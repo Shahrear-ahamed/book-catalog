@@ -15,10 +15,8 @@ router.post(
   BookController.createBook
 );
 
-// should add pagination
 router.get("/", BookController.getAllBooks);
 
-// should add pagination
 router.get("/:categoryId/category", BookController.getBookByCategoryId);
 
 router.get("/:id", BookController.getBookById);
