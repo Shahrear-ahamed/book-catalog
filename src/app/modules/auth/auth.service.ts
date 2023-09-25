@@ -53,9 +53,7 @@ const signIn = async (payload: Partial<User>) => {
 
   const token = await TokenServices.generateToken(userTokenData);
 
-  return {
-    token,
-  };
+  return token;
 };
 
 export const AuthService = { signUp, signIn };

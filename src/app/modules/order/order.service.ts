@@ -5,6 +5,7 @@ import httpStatus from "http-status";
 import { JwtPayload } from "jsonwebtoken";
 import ApiError from "../../../errors/ApiError";
 import prisma from "../../../shared/prisma";
+import { ENUM_USER_ROLE } from "../../../enum/userRole";
 
 type IOrderPayload = Order & {
   orderedBooks: [
@@ -26,7 +27,7 @@ const createOrder = async (payload: IOrderPayload, userId: string) => {
     });
 
     if (!order) {
-      throw new ApiError(httpStatus.BAD_REQUEST, "Unable to create course");
+      throw new ApiError(httpStatus.BAD_REQUEST, "Unable to create orders");
     }
 
     if (orderedBooks && orderedBooks.length > 0) {
@@ -62,7 +63,7 @@ const createOrder = async (payload: IOrderPayload, userId: string) => {
 };
 
 const getOrders = async (user: JwtPayload) => {
-  if (user?.role === "ADMIN") {
+  if (user?.role === ENUM_USER_ROLE.ADMIN) {
     return await prisma.order.findMany({
       include: {
         orderedBooks: true,
@@ -81,10 +82,15 @@ const getOrders = async (user: JwtPayload) => {
 };
 
 // bonus part
-const getOrderById = async (orderId: string, userId: string) => {
+const getOrderById = async (orderId: string, user: JwtPayload | null) => {
+  const condition =
+    user?.role === ENUM_USER_ROLE.ADMIN
+      ? { id: orderId }
+      : { id: orderId, userId: user?.id };
+
   return await prisma.order.findFirst({
     where: {
-      AND: [{ id: orderId }, { userId }],
+      AND: [condition],
     },
     include: {
       orderedBooks: true,

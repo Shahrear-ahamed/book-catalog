@@ -1,20 +1,11 @@
 // Your service code here
 
 import prisma from "../../../shared/prisma";
+import { selectOptions } from "./user.constants";
 
 const allUsers = async () => {
   return await prisma.user.findMany({
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      role: true,
-      contactNo: true,
-      address: true,
-      profileImg: true,
-      createdAt: true,
-      updatedAt: true,
-    },
+    select: selectOptions,
   });
 };
 
@@ -23,17 +14,7 @@ const getSingleUser = async (id: string) => {
     where: {
       id,
     },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      role: true,
-      contactNo: true,
-      address: true,
-      profileImg: true,
-      createdAt: true,
-      updatedAt: true,
-    },
+    select: selectOptions,
   });
 };
 
@@ -43,6 +24,7 @@ const updateUser = async (id: string, data: any) => {
       id,
     },
     data,
+    select: selectOptions,
   });
 };
 
@@ -51,6 +33,7 @@ const deleteUser = async (id: string) => {
     where: {
       id,
     },
+    select: selectOptions,
   });
 };
 

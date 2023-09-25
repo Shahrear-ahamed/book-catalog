@@ -13,7 +13,7 @@ const createOrder = catchAsync(async (req, res) => {
     message: "Order created successfully",
     data: result,
     success: true,
-    statusCode: httpStatus.CREATED,
+    statusCode: httpStatus.OK,
   });
 });
 
@@ -22,7 +22,7 @@ const getOrders = catchAsync(async (req, res) => {
   const result = await OrderService.getOrders(user as JwtPayload);
 
   sendResponse(res, {
-    message: "Orders fetched successfully",
+    message: "Orders retrieved successfully",
     data: result,
     success: true,
     statusCode: httpStatus.OK,
@@ -32,7 +32,7 @@ const getOrders = catchAsync(async (req, res) => {
 // bonus part
 const getOrderById = catchAsync(async (req, res) => {
   const user = req.user;
-  const result = await OrderService.getOrderById(req.params.orderId, user?.id);
+  const result = await OrderService.getOrderById(req.params.orderId, user);
 
   sendResponse(res, {
     message: "Order fetched successfully",

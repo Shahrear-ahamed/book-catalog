@@ -34,7 +34,7 @@ const getSingleCategory = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Categories fetched successfully",
+    message: "Category fetched successfully",
     data: result,
   });
 });
@@ -47,7 +47,7 @@ const updateCategory = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Categories fetched successfully",
+    message: "Category updated successfully",
     data: result,
   });
 });
@@ -60,7 +60,7 @@ const deleteCategory = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Categories fetched successfully",
+    message: "Category deleted successfully",
     data: result,
   });
 });

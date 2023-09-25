@@ -11,34 +11,34 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
+  id         String            @id @default(uuid())
   name       String
-  email      String   @unique
+  email      String            @unique
   password   String
-  role       Role     @default(CUSTOMER)
+  role       Role              @default(customer)
   contactNo  String
   address    String
-  profileImg String   @default("")
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt()
-  reviews    Review[]
+  profileImg String?
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt()
+  reviews    ReviewAndRating[]
   orders     Order[]
 
   @@map("users")
 }
 
 model Book {
-  id              String        @id @default(uuid())
+  id              String            @id @default(uuid())
   title           String
   author          String
   price           Float
   genre           String
   publicationDate String
   categoryId      String
-  category        Category      @relation(fields: [categoryId], references: [id])
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt()
-  reviews         Review[]
+  category        Category          @relation(fields: [categoryId], references: [id])
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt()
+  reviews         ReviewAndRating[]
   OrderedBook     OrderedBook[]
 
   @@map("books")
@@ -54,10 +54,10 @@ model Category {
   @@map("categories")
 }
 
-model Review {
+model ReviewAndRating {
   id        String   @id @default(uuid())
   review    String
-  rating    Float    @default(0.0)
+  rating    Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
   userId    String
@@ -65,12 +65,12 @@ model Review {
   bookId    String
   book      Book     @relation(fields: [bookId], references: [id])
 
-  @@map("reviews")
+  @@map("review_and_ratings")
 }
 
 model Order {
   id           String        @id @default(uuid())
-  status       Status        @default(PENDING)
+  status       Status        @default(pending)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt()
   userId       String
@@ -94,12 +94,12 @@ model OrderedBook {
 }
 
 enum Role {
-  ADMIN
-  CUSTOMER
+  admin
+  customer
 }
 
 enum Status {
-  PENDING
-  DELIVERED
-  CANCELLED
+  pending
+  shipped
+  delivered
 }

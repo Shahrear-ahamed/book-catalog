@@ -9,14 +9,14 @@ const signUp = z.object({
     password: z.string(),
     contactNo: z.string(),
     address: z.string(),
-    profileImg: z.string().url().optional(),
+    profileImg: z.string().optional(),
   }),
 });
 
 const signIn = z.object({
   body: z.object({
-    email: z.string().email().optional(),
-    password: z.string().optional(),
+    email: z.string().email(),
+    password: z.string(),
   }),
 });
 

@@ -40,7 +40,7 @@ const getBookByCategoryId = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Books retrieved by category successfully",
+    message: "Books with associated category data fetched successfully",
     data: result,
   });
 });
@@ -53,7 +53,7 @@ const getBookById = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Book retrieved by id successfully",
+    message: "Book fetched successfully",
     data: result,
   });
 });
@@ -79,7 +79,7 @@ const deleteBookById = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Book deleted successfully",
+    message: "Book is deleted successfully",
     data: result,
   });
 });
