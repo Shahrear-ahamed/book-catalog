@@ -28,6 +28,7 @@ exports.OrderService = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const prisma_1 = __importDefault(require("../../../shared/prisma"));
+const userRole_1 = require("../../../enum/userRole");
 const createOrder = (payload, userId) => __awaiter(void 0, void 0, void 0, function* () {
     payload.userId = userId;
     const { orderedBooks } = payload, others = __rest(payload, ["orderedBooks"]);
@@ -36,7 +37,7 @@ const createOrder = (payload, userId) => __awaiter(void 0, void 0, void 0, funct
             data: others,
         });
         if (!order) {
-            throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, "Unable to create course");
+            throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, "Unable to create orders");
         }
         if (orderedBooks && orderedBooks.length > 0) {
             const orderBookItems = orderedBooks.map((item) => {
@@ -66,7 +67,7 @@ const createOrder = (payload, userId) => __awaiter(void 0, void 0, void 0, funct
     });
 });
 const getOrders = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    if ((user === null || user === void 0 ? void 0 : user.role) === "ADMIN") {
+    if ((user === null || user === void 0 ? void 0 : user.role) === userRole_1.ENUM_USER_ROLE.ADMIN) {
         return yield prisma_1.default.order.findMany({
             include: {
                 orderedBooks: true,
@@ -83,10 +84,13 @@ const getOrders = (user) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 // bonus part
-const getOrderById = (orderId, userId) => __awaiter(void 0, void 0, void 0, function* () {
+const getOrderById = (orderId, user) => __awaiter(void 0, void 0, void 0, function* () {
+    const condition = (user === null || user === void 0 ? void 0 : user.role) === userRole_1.ENUM_USER_ROLE.ADMIN
+        ? { id: orderId }
+        : { id: orderId, userId: user === null || user === void 0 ? void 0 : user.id };
     return yield prisma_1.default.order.findFirst({
         where: {
-            AND: [{ id: orderId }, { userId }],
+            AND: [condition],
         },
         include: {
             orderedBooks: true,

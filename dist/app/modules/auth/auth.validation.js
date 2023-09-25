@@ -10,13 +10,13 @@ const signUp = zod_1.z.object({
         password: zod_1.z.string(),
         contactNo: zod_1.z.string(),
         address: zod_1.z.string(),
-        profileImg: zod_1.z.string().url().optional(),
+        profileImg: zod_1.z.string().optional(),
     }),
 });
 const signIn = zod_1.z.object({
     body: zod_1.z.object({
-        email: zod_1.z.string().email().optional(),
-        password: zod_1.z.string().optional(),
+        email: zod_1.z.string().email(),
+        password: zod_1.z.string(),
     }),
 });
 exports.AuthValidation = {

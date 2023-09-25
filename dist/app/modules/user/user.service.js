@@ -15,19 +15,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const prisma_1 = __importDefault(require("../../../shared/prisma"));
+const user_constants_1 = require("./user.constants");
+const bcryptPass_1 = require("../../../utils/bcryptPass");
 const allUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     return yield prisma_1.default.user.findMany({
-        select: {
-            id: true,
-            name: true,
-            email: true,
-            role: true,
-            contactNo: true,
-            address: true,
-            profileImg: true,
-            createdAt: true,
-            updatedAt: true,
-        },
+        select: user_constants_1.selectOptions,
     });
 });
 const getSingleUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,25 +27,19 @@ const getSingleUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
         where: {
             id,
         },
-        select: {
-            id: true,
-            name: true,
-            email: true,
-            role: true,
-            contactNo: true,
-            address: true,
-            profileImg: true,
-            createdAt: true,
-            updatedAt: true,
-        },
+        select: user_constants_1.selectOptions,
     });
 });
 const updateUser = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+    if (data.password)
+        data.password = yield bcryptPass_1.BcryptPassword.hashedPassword(data.password);
+    console.log(data);
     return yield prisma_1.default.user.update({
         where: {
             id,
         },
         data,
+        select: user_constants_1.selectOptions,
     });
 });
 const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -61,6 +47,7 @@ const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
         where: {
             id,
         },
+        select: user_constants_1.selectOptions,
     });
 });
 exports.UserService = {

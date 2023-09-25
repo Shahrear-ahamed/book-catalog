@@ -19,21 +19,12 @@ const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const prisma_1 = __importDefault(require("../../../shared/prisma"));
 const bcryptPass_1 = require("../../../utils/bcryptPass");
 const token_1 = require("../../../utils/token");
+const user_constants_1 = require("../user/user.constants");
 const signUp = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     payload.password = yield bcryptPass_1.BcryptPassword.hashedPassword(payload.password);
     return yield prisma_1.default.user.create({
         data: payload,
-        select: {
-            id: true,
-            name: true,
-            email: true,
-            role: true,
-            contactNo: true,
-            address: true,
-            profileImg: true,
-            createdAt: true,
-            updatedAt: true,
-        },
+        select: user_constants_1.selectOptions,
     });
 });
 const signIn = (payload) => __awaiter(void 0, void 0, void 0, function* () {
@@ -54,8 +45,6 @@ const signIn = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         role: isExist.role,
     };
     const token = yield token_1.TokenServices.generateToken(userTokenData);
-    return {
-        token,
-    };
+    return token;
 });
 exports.AuthService = { signUp, signIn };
