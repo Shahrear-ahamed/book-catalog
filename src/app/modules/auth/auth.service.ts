@@ -6,23 +6,14 @@ import ApiError from "../../../errors/ApiError";
 import prisma from "../../../shared/prisma";
 import { BcryptPassword } from "../../../utils/bcryptPass";
 import { TokenServices } from "../../../utils/token";
+import { selectOptions } from "../user/user.constants";
 
 const signUp = async (payload: User) => {
   payload.password = await BcryptPassword.hashedPassword(payload.password);
 
   return await prisma.user.create({
     data: payload,
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      role: true,
-      contactNo: true,
-      address: true,
-      profileImg: true,
-      createdAt: true,
-      updatedAt: true,
-    },
+    select: selectOptions,
   });
 };
 

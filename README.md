@@ -41,30 +41,30 @@
 
 - https://book-catalog-bay.vercel.app/api/v1/auth/signup (POST)
 - https://book-catalog-bay.vercel.app/api/v1/users (GET)
-- https://book-catalog-bay.vercel.app/api/v1/users/a5820513-343d-4e33-b01d-a809b37e1c34 (Single GET) Include an id that is saved in your database
-- https://book-catalog-bay.vercel.app/api/v1/users/a5820513-343d-4e33-b01d-a809b37e1c34 (PATCH)
-- https://book-catalog-bay.vercel.app/api/v1/users/a5820513-343d-4e33-b01d-a809b37e1c34 (DELETE) Include an id that is saved in your database
+- https://book-catalog-bay.vercel.app/api/v1/users/fbeca08e-8151-4124-81a7-4e999d052310 (Single GET) Include an id that is saved in your database
+- https://book-catalog-bay.vercel.app/api/v1/users/fbeca08e-8151-4124-81a7-4e999d052310 (PATCH)
+- https://book-catalog-bay.vercel.app/api/v1/users/fbeca08e-8151-4124-81a7-4e999d052310 (DELETE) Include an id that is saved in your database
 - https://book-catalog-bay.vercel.app/api/v1/profile (GET)
 
 ### Category
 
 - https://book-catalog-bay.vercel.app/api/v1/categories/create-category (POST)
 - https://book-catalog-bay.vercel.app/api/v1/categories (GET)
-- https://book-catalog-bay.vercel.app/api/v1/categories/a9131a1d-bc1e-4cb2-86a2-6b66fd49ea19 (Single GET) Include an id that is saved in your database
-- https://book-catalog-bay.vercel.app/api/v1/categories/a9131a1d-bc1e-4cb2-86a2-6b66fd49ea19 (PATCH)
-- https://book-catalog-bay.vercel.app/api/v1/categories/a9131a1d-bc1e-4cb2-86a2-6b66fd49ea19 (DELETE) Include an id that is saved in your database
+- https://book-catalog-bay.vercel.app/api/v1/categories/549917dc-c590-4343-ade1-dc38de7b223b (Single GET) Include an id that is saved in your database
+- https://book-catalog-bay.vercel.app/api/v1/categories/549917dc-c590-4343-ade1-dc38de7b223b (PATCH)
+- https://book-catalog-bay.vercel.app/api/v1/categories/549917dc-c590-4343-ade1-dc38de7b223b (DELETE) Include an id that is saved in your database
 
 ### Books
 
 - https://book-catalog-bay.vercel.app/api/v1/books/create-book (POST)
 - https://book-catalog-bay.vercel.app/api/v1/books (GET)
-- https://book-catalog-bay.vercel.app/api/v1/books/a9131a1d-bc1e-4cb2-86a2-6b66fd49ea19/category (GET)
-- https://book-catalog-bay.vercel.app/api/v1/books/ef919185-27ab-4b18-9f0b-93a3481e6ec9 (GET)
-- https://book-catalog-bay.vercel.app/api/v1/books/ef919185-27ab-4b18-9f0b-93a3481e6ec9 (PATCH)
-- https://book-catalog-bay.vercel.app/api/v1/books/ef919185-27ab-4b18-9f0b-93a3481e6ec9 (DELETE)
+- https://book-catalog-bay.vercel.app/api/v1/books/549917dc-c590-4343-ade1-dc38de7b223b/category (GET)
+- https://book-catalog-bay.vercel.app/api/v1/books/a1600d71-e34f-4408-830e-28533d4067d1 (GET)
+- https://book-catalog-bay.vercel.app/api/v1/books/a1600d71-e34f-4408-830e-28533d4067d1 (PATCH)
+- https://book-catalog-bay.vercel.app/api/v1/books/a1600d71-e34f-4408-830e-28533d4067d1 (DELETE)
 
 ### Orders
 
 - https://book-catalog-bay.vercel.app/api/v1/orders/create-order (POST)
 - https://book-catalog-bay.vercel.app/api/v1/orders (GET)
-- https://book-catalog-bay.vercel.app/api/v1/orders/a949091c-4f8b-4163-969a-25cbbaf80cb3 (GET)
+- https://book-catalog-bay.vercel.app/api/v1/orders/74e52164-6a20-41fa-a361-a8335fc3408e (GET)

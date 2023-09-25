@@ -1,7 +1,9 @@
 // Your service code here
 
+import { User } from "@prisma/client";
 import prisma from "../../../shared/prisma";
 import { selectOptions } from "./user.constants";
+import { BcryptPassword } from "../../../utils/bcryptPass";
 
 const allUsers = async () => {
   return await prisma.user.findMany({
@@ -18,7 +20,12 @@ const getSingleUser = async (id: string) => {
   });
 };
 
-const updateUser = async (id: string, data: any) => {
+const updateUser = async (id: string, data: Partial<User>) => {
+  if (data.password)
+    data.password = await BcryptPassword.hashedPassword(data.password);
+
+  console.log(data);
+
   return await prisma.user.update({
     where: {
       id,
