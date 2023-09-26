@@ -27,7 +27,8 @@ const getAllBooks = catchAsync(async (req, res) => {
     success: true,
     statusCode: httpStatus.OK,
     message: "Books fetched successfully",
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 
@@ -41,7 +42,8 @@ const getBookByCategoryId = catchAsync(async (req, res) => {
     success: true,
     statusCode: httpStatus.OK,
     message: "Books with associated category data fetched successfully",
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 
