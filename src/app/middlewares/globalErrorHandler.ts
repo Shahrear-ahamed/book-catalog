@@ -1,16 +1,17 @@
-import { Prisma } from "@prisma/client";
-import { ErrorRequestHandler } from "express";
-import { ZodError } from "zod";
-import config from "../../config";
-import ApiError from "../../errors/ApiError";
-import handleClientError from "../../errors/handleClientError";
-import handleValidationError from "../../errors/handleValidationError";
-import handleZodError from "../../errors/handleZodError";
-import { IGenericErrorMessage } from "../../interfaces/error";
+import { Prisma } from '@prisma/client';
+import { ErrorRequestHandler } from 'express';
+import { ZodError } from 'zod';
+import config from '../../config';
+import ApiError from '../../errors/ApiError';
+import handleClientError from '../../errors/handleClientError';
+import handleValidationError from '../../errors/handleValidationError';
+import handleZodError from '../../errors/handleZodError';
+import { IGenericErrorMessage } from '../../interfaces/error';
 
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode = 500;
-  let message = "Something went wrong !";
+  let message = 'Something went wrong !';
   let errorMessages: IGenericErrorMessage[] = [];
 
   if (error instanceof Prisma.PrismaClientValidationError) {
@@ -37,7 +38,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages = error?.message
       ? [
           {
-            path: "",
+            path: '',
             message: error?.message,
           },
         ]
@@ -47,7 +48,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages = error?.message
       ? [
           {
-            path: "",
+            path: '',
             message: error?.message,
           },
         ]
@@ -58,7 +59,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     success: false,
     message,
     errorMessages,
-    stack: config.env === "production" ? undefined : error?.stack,
+    stack: config.env === 'production' ? undefined : error?.stack,
   });
 };
 

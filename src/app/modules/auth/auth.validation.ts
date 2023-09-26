@@ -1,6 +1,6 @@
 // Define your validations here
 
-import { z } from "zod";
+import { z } from 'zod';
 
 const signUp = z.object({
   body: z.object({

@@ -1,12 +1,12 @@
 // Your service code here
 
-import { User } from "@prisma/client";
-import httpStatus from "http-status";
-import ApiError from "../../../errors/ApiError";
-import prisma from "../../../shared/prisma";
-import { BcryptPassword } from "../../../utils/bcryptPass";
-import { TokenServices } from "../../../utils/token";
-import { selectOptions } from "../user/user.constants";
+import { User } from '@prisma/client';
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
+import prisma from '../../../shared/prisma';
+import { BcryptPassword } from '../../../utils/bcryptPass';
+import { TokenServices } from '../../../utils/token';
+import { selectOptions } from '../user/user.constants';
 
 const signUp = async (payload: User) => {
   payload.password = await BcryptPassword.hashedPassword(payload.password);
@@ -25,16 +25,16 @@ const signIn = async (payload: Partial<User>) => {
   });
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
 
   const compared = await BcryptPassword.comparePassword(
     payload.password as string,
-    isExist.password
+    isExist.password,
   );
 
   if (!compared) {
-    throw new ApiError(httpStatus.NOT_ACCEPTABLE, "email or password is wrong");
+    throw new ApiError(httpStatus.NOT_ACCEPTABLE, 'email or password is wrong');
   }
 
   const userTokenData = {

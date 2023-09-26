@@ -23,7 +23,7 @@ const createCategory = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.CREATED,
-        message: "Category created successfully",
+        message: 'Category created successfully',
         data: result,
     });
 }));
@@ -32,7 +32,7 @@ const getAllCategories = (0, catchAsync_1.default)((req, res) => __awaiter(void 
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Categories fetched successfully",
+        message: 'Categories fetched successfully',
         data: result,
     });
 }));
@@ -42,7 +42,7 @@ const getSingleCategory = (0, catchAsync_1.default)((req, res) => __awaiter(void
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Category fetched successfully",
+        message: 'Category fetched successfully',
         data: result,
     });
 }));
@@ -52,7 +52,7 @@ const updateCategory = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Category updated successfully",
+        message: 'Category updated successfully',
         data: result,
     });
 }));
@@ -62,7 +62,7 @@ const deleteCategory = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Category deleted successfully",
+        message: 'Category deleted successfully',
         data: result,
     });
 }));

@@ -1,11 +1,11 @@
 // Your service code here
 
-import { Order } from "@prisma/client";
-import httpStatus from "http-status";
-import { JwtPayload } from "jsonwebtoken";
-import ApiError from "../../../errors/ApiError";
-import prisma from "../../../shared/prisma";
-import { ENUM_USER_ROLE } from "../../../enum/userRole";
+import { Order } from '@prisma/client';
+import httpStatus from 'http-status';
+import { JwtPayload } from 'jsonwebtoken';
+import ApiError from '../../../errors/ApiError';
+import prisma from '../../../shared/prisma';
+import { ENUM_USER_ROLE } from '../../../enum/userRole';
 
 type IOrderPayload = Order & {
   orderedBooks: [
@@ -21,17 +21,17 @@ const createOrder = async (payload: IOrderPayload, userId: string) => {
 
   const { orderedBooks, ...others } = payload;
 
-  const newOrder = await prisma.$transaction(async (prismaTrans) => {
+  const newOrder = await prisma.$transaction(async prismaTrans => {
     const order = await prismaTrans.order.create({
       data: others,
     });
 
     if (!order) {
-      throw new ApiError(httpStatus.BAD_REQUEST, "Unable to create orders");
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create orders');
     }
 
     if (orderedBooks && orderedBooks.length > 0) {
-      const orderBookItems = orderedBooks.map((item) => {
+      const orderBookItems = orderedBooks.map(item => {
         return {
           bookId: item.bookId,
           quantity: item.quantity,
@@ -50,7 +50,7 @@ const createOrder = async (payload: IOrderPayload, userId: string) => {
   });
 
   if (!newOrder)
-    throw new ApiError(httpStatus.BAD_REQUEST, "Unable to create your order");
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create your order');
 
   return await prisma.order.findFirst({
     where: {

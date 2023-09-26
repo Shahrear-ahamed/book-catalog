@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import httpStatus from "http-status";
-import catchAsync from "../../../shared/catchAsync";
-import sendResponse from "../../../shared/sendResponse";
-import { AuthService } from "./auth.service";
+import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
+import { AuthService } from './auth.service';
 // Your controller code here
 
 const signUp = catchAsync(async (req: Request, res: Response) => {
@@ -11,7 +11,7 @@ const signUp = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User created successfully",
+    message: 'User created successfully',
     data: result,
   });
 });
@@ -22,7 +22,7 @@ const signIn = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User signin successfully!s",
+    message: 'User signin successfully!s',
     token: result,
   });
 });

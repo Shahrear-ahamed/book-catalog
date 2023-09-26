@@ -10,9 +10,10 @@ const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const handleClientError_1 = __importDefault(require("../../errors/handleClientError"));
 const handleValidationError_1 = __importDefault(require("../../errors/handleValidationError"));
 const handleZodError_1 = __importDefault(require("../../errors/handleZodError"));
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const globalErrorHandler = (error, req, res, next) => {
     let statusCode = 500;
-    let message = "Something went wrong !";
+    let message = 'Something went wrong !';
     let errorMessages = [];
     if (error instanceof client_1.Prisma.PrismaClientValidationError) {
         const simplifiedError = (0, handleValidationError_1.default)(error);
@@ -38,7 +39,7 @@ const globalErrorHandler = (error, req, res, next) => {
         errorMessages = (error === null || error === void 0 ? void 0 : error.message)
             ? [
                 {
-                    path: "",
+                    path: '',
                     message: error === null || error === void 0 ? void 0 : error.message,
                 },
             ]
@@ -49,7 +50,7 @@ const globalErrorHandler = (error, req, res, next) => {
         errorMessages = (error === null || error === void 0 ? void 0 : error.message)
             ? [
                 {
-                    path: "",
+                    path: '',
                     message: error === null || error === void 0 ? void 0 : error.message,
                 },
             ]
@@ -59,7 +60,7 @@ const globalErrorHandler = (error, req, res, next) => {
         success: false,
         message,
         errorMessages,
-        stack: config_1.default.env === "production" ? undefined : error === null || error === void 0 ? void 0 : error.stack,
+        stack: config_1.default.env === 'production' ? undefined : error === null || error === void 0 ? void 0 : error.stack,
     });
 };
 exports.default = globalErrorHandler;

@@ -1,6 +1,6 @@
-import { Server } from "http";
-import app from "./app";
-import config from "./config";
+import { Server } from 'http';
+import app from './app';
+import config from './config';
 
 async function bootstrap() {
   const server: Server = app.listen(config.port, () => {
@@ -10,7 +10,7 @@ async function bootstrap() {
   const exitHandler = () => {
     if (server) {
       server.close(() => {
-        console.log("Server closed");
+        console.log('Server closed');
       });
     }
     process.exit(1);
@@ -21,11 +21,11 @@ async function bootstrap() {
     exitHandler();
   };
 
-  process.on("uncaughtException", unexpectedErrorHandler);
-  process.on("unhandledRejection", unexpectedErrorHandler);
+  process.on('uncaughtException', unexpectedErrorHandler);
+  process.on('unhandledRejection', unexpectedErrorHandler);
 
-  process.on("SIGTERM", () => {
-    console.log("SIGTERM received");
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM received');
     if (server) {
       server.close();
     }

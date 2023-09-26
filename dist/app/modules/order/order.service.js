@@ -37,10 +37,10 @@ const createOrder = (payload, userId) => __awaiter(void 0, void 0, void 0, funct
             data: others,
         });
         if (!order) {
-            throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, "Unable to create orders");
+            throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, 'Unable to create orders');
         }
         if (orderedBooks && orderedBooks.length > 0) {
-            const orderBookItems = orderedBooks.map((item) => {
+            const orderBookItems = orderedBooks.map(item => {
                 return {
                     bookId: item.bookId,
                     quantity: item.quantity,
@@ -56,7 +56,7 @@ const createOrder = (payload, userId) => __awaiter(void 0, void 0, void 0, funct
         return order;
     }));
     if (!newOrder)
-        throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, "Unable to create your order");
+        throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, 'Unable to create your order');
     return yield prisma_1.default.order.findFirst({
         where: {
             id: newOrder.id,

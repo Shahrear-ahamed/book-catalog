@@ -1,7 +1,7 @@
-import httpStatus from "http-status";
-import catchAsync from "../../../shared/catchAsync";
-import sendResponse from "../../../shared/sendResponse";
-import { CategoryService } from "./category.service";
+import httpStatus from 'http-status';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
+import { CategoryService } from './category.service';
 // Your controller code here
 
 const createCategory = catchAsync(async (req, res) => {
@@ -10,7 +10,7 @@ const createCategory = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,
-    message: "Category created successfully",
+    message: 'Category created successfully',
     data: result,
   });
 });
@@ -21,7 +21,7 @@ const getAllCategories = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Categories fetched successfully",
+    message: 'Categories fetched successfully',
     data: result,
   });
 });
@@ -34,7 +34,7 @@ const getSingleCategory = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Category fetched successfully",
+    message: 'Category fetched successfully',
     data: result,
   });
 });
@@ -47,7 +47,7 @@ const updateCategory = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Category updated successfully",
+    message: 'Category updated successfully',
     data: result,
   });
 });
@@ -60,7 +60,7 @@ const deleteCategory = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Category deleted successfully",
+    message: 'Category deleted successfully',
     data: result,
   });
 });

@@ -1,9 +1,9 @@
 // Your service code here
 
-import { User } from "@prisma/client";
-import prisma from "../../../shared/prisma";
-import { selectOptions } from "./user.constants";
-import { BcryptPassword } from "../../../utils/bcryptPass";
+import { User } from '@prisma/client';
+import prisma from '../../../shared/prisma';
+import { selectOptions } from './user.constants';
+import { BcryptPassword } from '../../../utils/bcryptPass';
 
 const allUsers = async () => {
   return await prisma.user.findMany({

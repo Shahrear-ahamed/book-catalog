@@ -1,11 +1,11 @@
 // Your service code here
 
-import { Book, Prisma } from "@prisma/client";
-import { IPaginationOptions } from "../../../interfaces/pagination";
-import prisma from "../../../shared/prisma";
-import { paginationHelpers } from "../../../utils/paginationHelper";
-import { AllBooksSearchableFields } from "./book.constants";
-import { IBooksFilterRequest } from "./book.interfaces";
+import { Book, Prisma } from '@prisma/client';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+import prisma from '../../../shared/prisma';
+import { paginationHelpers } from '../../../utils/paginationHelper';
+import { AllBooksSearchableFields } from './book.constants';
+import { IBooksFilterRequest } from './book.interfaces';
 
 const createBook = async (payload: Book) => {
   return await prisma.book.create({
@@ -15,7 +15,7 @@ const createBook = async (payload: Book) => {
 
 const getAllBooks = async (
   filters: IBooksFilterRequest,
-  options: IPaginationOptions
+  options: IPaginationOptions,
 ) => {
   const { page, size, skip } = paginationHelpers.calculatePagination(options);
 
@@ -25,10 +25,10 @@ const getAllBooks = async (
 
   if (search) {
     andCondition.push({
-      OR: AllBooksSearchableFields.map((filter) => ({
+      OR: AllBooksSearchableFields.map(filter => ({
         [filter]: {
           contains: search,
-          mode: "insensitive",
+          mode: 'insensitive',
         },
       })),
     });
@@ -70,7 +70,7 @@ const getAllBooks = async (
             [options.sortBy]: options.sortOrder,
           }
         : {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
   });
 
@@ -90,7 +90,7 @@ const getAllBooks = async (
 
 const getBookByCategoryId = async (
   categoryId: string,
-  options: IPaginationOptions
+  options: IPaginationOptions,
 ) => {
   const { page, size, skip } = paginationHelpers.calculatePagination(options);
 
@@ -106,7 +106,7 @@ const getBookByCategoryId = async (
             [options.sortBy]: options.sortOrder,
           }
         : {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
   });
 

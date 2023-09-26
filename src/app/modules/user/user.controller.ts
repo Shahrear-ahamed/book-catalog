@@ -1,7 +1,7 @@
-import httpStatus from "http-status";
-import catchAsync from "../../../shared/catchAsync";
-import sendResponse from "../../../shared/sendResponse";
-import { UserService } from "./user.service";
+import httpStatus from 'http-status';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
+import { UserService } from './user.service';
 // Your controller code here
 
 const allUsers = catchAsync(async (req, res) => {
@@ -10,7 +10,7 @@ const allUsers = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Users retrieved successfully",
+    message: 'Users retrieved successfully',
     data: result,
   });
 });
@@ -23,7 +23,7 @@ const getSingleUser = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "User fetched successfully",
+    message: 'User fetched successfully',
     data: result,
   });
 });
@@ -36,7 +36,7 @@ const updateUser = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "User updated successfully",
+    message: 'User updated successfully',
     data: result,
   });
 });
@@ -49,7 +49,7 @@ const deleteUser = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "User deleted successfully",
+    message: 'User deleted successfully',
     data: result,
   });
 });

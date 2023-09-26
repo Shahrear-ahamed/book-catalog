@@ -1,7 +1,7 @@
 // Your service code here
 
-import { JwtPayload } from "jsonwebtoken";
-import prisma from "../../../shared/prisma";
+import { JwtPayload } from 'jsonwebtoken';
+import prisma from '../../../shared/prisma';
 
 const getProfile = async (user: JwtPayload) => {
   return await prisma.user.findUnique({

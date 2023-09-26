@@ -23,7 +23,7 @@ const signUp = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0,
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: "User created successfully",
+        message: 'User created successfully',
         data: result,
     });
 }));
@@ -32,8 +32,8 @@ const signIn = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0,
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: "User signin successfully!",
-        data: result,
+        message: 'User signin successfully!s',
+        token: result,
     });
 }));
 exports.AuthController = {

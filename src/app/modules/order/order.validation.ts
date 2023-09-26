@@ -1,6 +1,6 @@
 // Define your validations here
 
-import { z } from "zod";
+import { z } from 'zod';
 
 const createOrder = z.object({
   body: z.object({
@@ -8,7 +8,7 @@ const createOrder = z.object({
       z.object({
         bookId: z.string().uuid(),
         quantity: z.number().int().positive(),
-      })
+      }),
     ),
   }),
 });

@@ -22,7 +22,7 @@ const createOrder = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     const user = req.user;
     const result = yield order_service_1.OrderService.createOrder(req.body, user === null || user === void 0 ? void 0 : user.id);
     (0, sendResponse_1.default)(res, {
-        message: "Order created successfully",
+        message: 'Order created successfully',
         data: result,
         success: true,
         statusCode: http_status_1.default.OK,
@@ -32,7 +32,7 @@ const getOrders = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
     const user = req.user;
     const result = yield order_service_1.OrderService.getOrders(user);
     (0, sendResponse_1.default)(res, {
-        message: "Orders retrieved successfully",
+        message: 'Orders retrieved successfully',
         data: result,
         success: true,
         statusCode: http_status_1.default.OK,
@@ -43,7 +43,7 @@ const getOrderById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     const user = req.user;
     const result = yield order_service_1.OrderService.getOrderById(req.params.orderId, user);
     (0, sendResponse_1.default)(res, {
-        message: "Order fetched successfully",
+        message: 'Order fetched successfully',
         data: result,
         success: true,
         statusCode: http_status_1.default.OK,

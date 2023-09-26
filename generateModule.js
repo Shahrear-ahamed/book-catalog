@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 if (process.argv.length < 3) {
   console.error(
-    "Usage: node generate-folder-structure.js <FolderName> <FileName>",
+    'Usage: node generate-folder-structure.js <FolderName> <FileName>',
   );
   process.exit(1);
 }
@@ -15,9 +15,9 @@ const firstFileName = fileName.charAt(0).toUpperCase() + fileName.slice(1);
 // Define the target directory
 const targetDirectory = path.join(
   __dirname,
-  "src",
-  "app",
-  "modules",
+  'src',
+  'app',
+  'modules',
   folderName,
 );
 

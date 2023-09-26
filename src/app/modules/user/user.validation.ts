@@ -1,7 +1,7 @@
 // Define your validations here
 
-import { z } from "zod";
-import { userRole } from "./user.constants";
+import { z } from 'zod';
+import { userRole } from './user.constants';
 
 const updateUserByAdmin = z.object({
   body: z.object({

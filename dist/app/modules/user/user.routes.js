@@ -12,8 +12,8 @@ const user_controller_1 = require("./user.controller");
 const user_validation_1 = require("./user.validation");
 // Define your routes here
 const router = express_1.default.Router();
-router.get("/", (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), user_controller_1.UserController.allUsers);
-router.get("/:id", (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), user_controller_1.UserController.getSingleUser);
-router.patch("/:id", (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), (0, validateRequest_1.default)(user_validation_1.UserValidation.updateUserByAdmin), user_controller_1.UserController.updateUser);
-router.delete("/:id", (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), user_controller_1.UserController.deleteUser);
+router.get('/', (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), user_controller_1.UserController.allUsers);
+router.get('/:id', (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), user_controller_1.UserController.getSingleUser);
+router.patch('/:id', (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), (0, validateRequest_1.default)(user_validation_1.UserValidation.updateUserByAdmin), user_controller_1.UserController.updateUser);
+router.delete('/:id', (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), user_controller_1.UserController.deleteUser);
 exports.UserRoutes = router;

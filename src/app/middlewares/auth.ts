@@ -1,9 +1,9 @@
-import { NextFunction, Request, Response } from "express";
-import httpStatus from "http-status";
-import { Secret } from "jsonwebtoken";
-import config from "../../config";
-import ApiError from "../../errors/ApiError";
-import { TokenServices } from "../../utils/token";
+import { NextFunction, Request, Response } from 'express';
+import httpStatus from 'http-status';
+import { Secret } from 'jsonwebtoken';
+import config from '../../config';
+import ApiError from '../../errors/ApiError';
+import { TokenServices } from '../../utils/token';
 
 const auth =
   (...requiredRoles: string[]) =>
@@ -13,18 +13,18 @@ const auth =
       const token = req.headers.authorization;
 
       if (!token) {
-        throw new ApiError(httpStatus.UNAUTHORIZED, "You are not authorized");
+        throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not authorized');
       }
       // verify token
       let verifiedUser = null;
 
       verifiedUser = await TokenServices.verifyToken(
         token,
-        config.jwt.secret as Secret
+        config.jwt.secret as Secret,
       );
 
       if (requiredRoles.length && !requiredRoles.includes(verifiedUser.role)) {
-        throw new ApiError(httpStatus.FORBIDDEN, "Forbidden");
+        throw new ApiError(httpStatus.FORBIDDEN, 'Forbidden');
       }
 
       req.user = verifiedUser;

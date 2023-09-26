@@ -28,10 +28,10 @@ const getAllBooks = (filters, options) => __awaiter(void 0, void 0, void 0, func
     const andCondition = [];
     if (search) {
         andCondition.push({
-            OR: book_constants_1.AllBooksSearchableFields.map((filter) => ({
+            OR: book_constants_1.AllBooksSearchableFields.map(filter => ({
                 [filter]: {
                     contains: search,
-                    mode: "insensitive",
+                    mode: 'insensitive',
                 },
             })),
         });
@@ -66,7 +66,7 @@ const getAllBooks = (filters, options) => __awaiter(void 0, void 0, void 0, func
                 [options.sortBy]: options.sortOrder,
             }
             : {
-                createdAt: "desc",
+                createdAt: 'desc',
             },
     });
     // total count
@@ -94,7 +94,7 @@ const getBookByCategoryId = (categoryId, options) => __awaiter(void 0, void 0, v
                 [options.sortBy]: options.sortOrder,
             }
             : {
-                createdAt: "desc",
+                createdAt: 'desc',
             },
     });
     // total count

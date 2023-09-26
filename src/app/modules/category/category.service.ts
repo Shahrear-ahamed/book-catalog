@@ -1,7 +1,7 @@
 // Your service code here
 
-import { Category } from "@prisma/client";
-import prisma from "../../../shared/prisma";
+import { Category } from '@prisma/client';
+import prisma from '../../../shared/prisma';
 
 const createCategory = async (payload: Category) => {
   return await prisma.category.create({

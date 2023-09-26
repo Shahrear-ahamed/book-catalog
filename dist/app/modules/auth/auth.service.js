@@ -34,11 +34,11 @@ const signIn = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         },
     });
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, "User not found");
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'User not found');
     }
     const compared = yield bcryptPass_1.BcryptPassword.comparePassword(payload.password, isExist.password);
     if (!compared) {
-        throw new ApiError_1.default(http_status_1.default.NOT_ACCEPTABLE, "email or password is wrong");
+        throw new ApiError_1.default(http_status_1.default.NOT_ACCEPTABLE, 'email or password is wrong');
     }
     const userTokenData = {
         id: isExist.id,

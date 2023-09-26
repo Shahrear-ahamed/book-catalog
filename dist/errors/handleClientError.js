@@ -11,7 +11,8 @@ const handleClientError = (error) => {
             message,
         });
     }
-    if (error.code === 'P2003' && error.message.includes('delete()` invocation:')) {
+    if (error.code === 'P2003' &&
+        error.message.includes('delete()` invocation:')) {
         message = 'Delete failed';
         errors.push({
             path: '',

@@ -1,10 +1,10 @@
-import jwt, { JwtPayload, Secret } from "jsonwebtoken";
-import config from "../config";
+import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+import config from '../config';
 
-interface IToken {
+type IToken = {
   id: string;
   role: string;
-}
+};
 
 const generateToken = async (payload: IToken) => {
   return jwt.sign(payload, config.jwt.secret as string, {

@@ -14,7 +14,10 @@ const handleClientError = (error: Prisma.PrismaClientKnownRequestError) => {
     });
   }
 
-  if (error.code === 'P2003' && error.message.includes('delete()` invocation:')) {
+  if (
+    error.code === 'P2003' &&
+    error.message.includes('delete()` invocation:')
+  ) {
     message = 'Delete failed';
 
     errors.push({

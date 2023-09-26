@@ -12,10 +12,10 @@ const book_controller_1 = require("./book.controller");
 const book_validation_1 = require("./book.validation");
 // Define your routes here
 const router = express_1.default.Router();
-router.post("/create-book", (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), (0, validateRequest_1.default)(book_validation_1.BookValidation.createNewBook), book_controller_1.BookController.createBook);
-router.get("/", book_controller_1.BookController.getAllBooks);
-router.get("/:categoryId/category", book_controller_1.BookController.getBookByCategoryId);
-router.get("/:id", book_controller_1.BookController.getBookById);
-router.patch("/:id", (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), (0, validateRequest_1.default)(book_validation_1.BookValidation.updateBook), book_controller_1.BookController.updateBookById);
-router.delete("/:id", (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), book_controller_1.BookController.deleteBookById);
+router.post('/create-book', (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), (0, validateRequest_1.default)(book_validation_1.BookValidation.createNewBook), book_controller_1.BookController.createBook);
+router.get('/', book_controller_1.BookController.getAllBooks);
+router.get('/:categoryId/category', book_controller_1.BookController.getBookByCategoryId);
+router.get('/:id', book_controller_1.BookController.getBookById);
+router.patch('/:id', (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), (0, validateRequest_1.default)(book_validation_1.BookValidation.updateBook), book_controller_1.BookController.updateBookById);
+router.delete('/:id', (0, auth_1.default)(userRole_1.ENUM_USER_ROLE.ADMIN), book_controller_1.BookController.deleteBookById);
 exports.BookRoutes = router;

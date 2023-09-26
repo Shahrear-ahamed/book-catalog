@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import { AnyZodObject, ZodEffects } from "zod";
+import { NextFunction, Request, Response } from 'express';
+import { AnyZodObject, ZodEffects } from 'zod';
 
 const validateRequest =
   (schema: AnyZodObject | ZodEffects<AnyZodObject>) =>
@@ -13,7 +13,7 @@ const validateRequest =
       });
       return next();
     } catch (error) {
-      next(error); 
+      next(error);
     }
   };
 

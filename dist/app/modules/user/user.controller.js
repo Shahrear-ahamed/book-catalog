@@ -23,7 +23,7 @@ const allUsers = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Users retrieved successfully",
+        message: 'Users retrieved successfully',
         data: result,
     });
 }));
@@ -33,7 +33,7 @@ const getSingleUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "User fetched successfully",
+        message: 'User fetched successfully',
         data: result,
     });
 }));
@@ -43,7 +43,7 @@ const updateUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "User updated successfully",
+        message: 'User updated successfully',
         data: result,
     });
 }));
@@ -53,7 +53,7 @@ const deleteUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "User deleted successfully",
+        message: 'User deleted successfully',
         data: result,
     });
 }));

@@ -13,29 +13,29 @@ const user_routes_1 = require("../modules/user/user.routes");
 const router = express_1.default.Router();
 const moduleRoutes = [
     {
-        path: "/auth",
+        path: '/auth',
         route: auth_routes_1.AuthRoutes,
     },
     {
-        path: "/users",
+        path: '/users',
         route: user_routes_1.UserRoutes,
     },
     {
-        path: "/categories",
+        path: '/categories',
         route: category_routes_1.CategoryRoutes,
     },
     {
-        path: "/books",
+        path: '/books',
         route: book_routes_1.BookRoutes,
     },
     {
-        path: "/orders",
+        path: '/orders',
         route: order_routes_1.OrderRoutes,
     },
     {
-        path: "/profile",
+        path: '/profile',
         route: profile_routes_1.ProfileRoutes,
     },
 ];
-moduleRoutes.forEach((route) => router.use(route.path, route.route));
+moduleRoutes.forEach(route => router.use(route.path, route.route));
 exports.default = router;

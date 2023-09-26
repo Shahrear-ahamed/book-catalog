@@ -19,16 +19,15 @@ const token_1 = require("../../utils/token");
 const auth = (...requiredRoles) => (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         //get authorization token
-        const bearerToken = req.headers.authorization;
-        const token = bearerToken === null || bearerToken === void 0 ? void 0 : bearerToken.split(" ")[1];
+        const token = req.headers.authorization;
         if (!token) {
-            throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, "You are not authorized");
+            throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'You are not authorized');
         }
         // verify token
         let verifiedUser = null;
         verifiedUser = yield token_1.TokenServices.verifyToken(token, config_1.default.jwt.secret);
         if (requiredRoles.length && !requiredRoles.includes(verifiedUser.role)) {
-            throw new ApiError_1.default(http_status_1.default.FORBIDDEN, "Forbidden");
+            throw new ApiError_1.default(http_status_1.default.FORBIDDEN, 'Forbidden');
         }
         req.user = verifiedUser;
         next();

@@ -25,30 +25,32 @@ const createBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.CREATED,
-        message: "Book created successfully",
+        message: 'Book created successfully',
         data: result,
     });
 }));
 const getAllBooks = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const filters = (0, pick_1.default)(req.query, book_constants_1.BooksFilterableFields);
-    const pagination = (0, pick_1.default)(req.query, ["size", "page", "sortBy", "sortOrder"]);
+    const pagination = (0, pick_1.default)(req.query, ['size', 'page', 'sortBy', 'sortOrder']);
     const result = yield book_service_1.BookService.getAllBooks(filters, pagination);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Books fetched successfully",
-        data: result,
+        message: 'Books fetched successfully',
+        meta: result.meta,
+        data: result.data,
     });
 }));
 const getBookByCategoryId = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.categoryId;
-    const pagination = (0, pick_1.default)(req.query, ["size", "page", "sortBy", "sortOrder"]);
+    const pagination = (0, pick_1.default)(req.query, ['size', 'page', 'sortBy', 'sortOrder']);
     const result = yield book_service_1.BookService.getBookByCategoryId(id, pagination);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Books with associated category data fetched successfully",
-        data: result,
+        message: 'Books with associated category data fetched successfully',
+        meta: result.meta,
+        data: result.data,
     });
 }));
 const getBookById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -57,7 +59,7 @@ const getBookById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Book fetched successfully",
+        message: 'Book fetched successfully',
         data: result,
     });
 }));
@@ -67,7 +69,7 @@ const updateBookById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Book updated successfully",
+        message: 'Book updated successfully',
         data: result,
     });
 }));
@@ -77,7 +79,7 @@ const deleteBookById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Book is deleted successfully",
+        message: 'Book is deleted successfully',
         data: result,
     });
 }));
